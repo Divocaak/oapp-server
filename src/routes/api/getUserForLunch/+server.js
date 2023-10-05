@@ -9,10 +9,12 @@ export async function POST({ request }) {
     // BUG podle map nesprávný výsledek, ověřit s expertem
     let qq = "SELECT id_user, ST_X(position) AS x, ST_Y(position) AS y, (ST_distance_sphere(position, ST_SRID(POINT(-73.109857, 7.107069), 4326))) AS distanceInMeters FROM active_users ORDER BY distanceInMeters ASC;";
 
-    // TODO ensure that user wont get matched with same user too often
-    // NOTE lat and lon wont be needed in production
+    // TODO ensure that user wont get matched with same user too often on query level
+
+    // NOTE lat and lon wont be needed to select in production
+
     // TODO ask user and change db value
-    // TODO send notification to user
+    // URGENTtfre => send notification to user
 
     // find closest user
     await pool.promise()
